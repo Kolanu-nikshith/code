@@ -50,26 +50,42 @@
  */
 class BSTIterator {
 public:
-    vector<TreeNode*> v;int i=0;
+vector<TreeNode*> v;int i=0;
+        stack<TreeNode*> s;
+
     BSTIterator(TreeNode* root) {
-        inorder(root);
+        pushstack(root);        
+//        inorder(root);
     }
-    void inorder(TreeNode* root){
-        if(root){
-            inorder(root->left);
-            v.push_back(root);
-            inorder(root->right);
-        }
-    }
+    // void inorder(TreeNode* root){
+    //     if(root){
+    //         inorder(root->left);
+    //         v.push_back(root);
+    //         inorder(root->right);
+    //     }
+    // }
     
     int next() {
-        return v[i++]->val;
+        // return v[i++]->val;
+        TreeNode* ele = s.top();
+        s.pop();
+        pushstack(ele->right);
+        return ele->val;
     }
     
     bool hasNext() {
-        return i<v.size();
+        // return i<v.size();
+        return s.size() >0;
     }
-};
+    
+    void pushstack(TreeNode* root){
+        while(root){
+            s.push(root);
+            root=root->left;
+        }
+    }    
+    
+    };
 
 /**
  * Your BSTIterator object will be instantiated and called as such:
