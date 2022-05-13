@@ -21,26 +21,46 @@ public:
     unordered_map<int, vector<Node*>> m;
     int minh=INT_MAX, maxh = INT_MIN;
     Node* connect(Node* root) {
-        inorder(root, 0);
-//        cout<<maxh<<endl;
-        for(int i=0;i<maxh+1;i++){
-            for(int j=0;j<m[i].size();j++){
-                if(j+1 == m[i].size())
-                    m[i][j]->next = NULL;
-                else
-                    m[i][j]->next = m[i][j+1];
-                // m[i][j]->next = m[i][j+1]? m[i][j+1]: NULL;
+//         inorder(root, 0);
+// //        cout<<maxh<<endl;
+//         for(int i=0;i<maxh+1;i++){
+//             for(int j=0;j<m[i].size();j++){
+//                 if(j+1 == m[i].size())
+//                     m[i][j]->next = NULL;
+//                 else
+//                     m[i][j]->next = m[i][j+1];
+//                 // m[i][j]->next = m[i][j+1]? m[i][j+1]: NULL;
+//             }
+//         }
+//         return root;
+//     }
+//     void inorder(Node* root, int h){
+//         if(root){
+//             inorder(root->left, h+1);
+//             m[h].push_back(root);
+//             maxh = max(maxh, h);
+//             inorder(root->right, h+1);
+//         }
+
+        queue<Node *> q;
+        
+        if(root) q.push(root);
+        while(!q.empty()){
+            Node *prev = NULL;
+            int qsize = q.size();
+            for(int i=0;i<qsize;i++){
+                auto top = q.front();
+                q.pop();
+                top->next = prev;
+                prev = top;
+                if(top->right) q.push(top->right);
+                if(top->left) q.push(top->left);
+                
             }
         }
         return root;
-    }
-    void inorder(Node* root, int h){
-        if(root){
-            inorder(root->left, h+1);
-            m[h].push_back(root);
-            maxh = max(maxh, h);
-            inorder(root->right, h+1);
-        }
+        
+    
     }
     
 };
