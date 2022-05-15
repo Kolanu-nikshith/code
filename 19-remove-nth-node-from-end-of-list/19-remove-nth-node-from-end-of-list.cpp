@@ -14,14 +14,14 @@ public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         calclength(head);
         ListNode* temp = head;
-        if(len==1) return NULL;
-        else if(len==2 and n==1) {
-            head->next = NULL;
-            return head;
-        } 
-        else if(len==2 and n==1){
-            return head->next;
-        }
+        // if(len==1) return NULL;
+        // else if(len==2 and n==1) {
+        //     head->next = NULL;
+        //     return head;
+        // } 
+        // else if(len==2 and n==1){
+        //     return head->next;
+        // }
         ListNode* prev = NULL;
         if(len-n == 0) return head->next;
         for(int i=0;i<(len-n);i++){
