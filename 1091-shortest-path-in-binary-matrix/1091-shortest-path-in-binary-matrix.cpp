@@ -13,7 +13,7 @@ public:
         int dx[8] ={0,0,1,-1,1,1,-1,-1};
         int dy[8] ={1,-1,0,0,1,-1,1,-1};
 
-        if(grid[0][0]==1) return -1;
+        if(grid[0][0]==1 or grid[n-1][n-1]==1) return -1;
         q.push({{0,0},0});
         while(!q.empty()){
             auto e = q.front();
