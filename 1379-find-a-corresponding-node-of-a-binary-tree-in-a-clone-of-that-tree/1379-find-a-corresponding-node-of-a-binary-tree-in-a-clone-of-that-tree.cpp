@@ -12,14 +12,14 @@ class Solution {
 public:
     TreeNode* ans;
     TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
-        inorder(cloned, target->val);
+        inorder(original, cloned, target );
         return ans;
     }
-    void inorder(TreeNode* root, int n){
+    void inorder(TreeNode* root, TreeNode* cloned, TreeNode* target){
         if(root){
-            inorder(root->left, n);
-            if(root->val == n) ans=root;
-            inorder(root->right, n);
+            inorder(root->left, cloned->left, target);
+            if(root == target) ans=cloned;
+            inorder(root->right, cloned->right, target);
             
         }
     }
