@@ -4,7 +4,7 @@ public:
         string s;
         s.resize(2*n);
         vector<string> ans;
-        generateall(ans, s, 0);
+        generateall(ans, s, 0, 0, 0, n);
         return ans;
     }
 
@@ -18,17 +18,21 @@ public:
         return c==0?true:false;
     }
     
-    void generateall(vector<string> &ans,string s,int index){
+    void generateall(vector<string> &ans,string s,int index, int open, int close, int n){
         if(index==s.length()){
-            if(isvalid(s)){
+           // if(isvalid(s)){
                 ans.push_back(s);
-            }
+            //}
         return;
         }
         
-        s[index]='(';
-        generateall(ans, s, index+1);
-        s[index] = ')';
-        generateall(ans, s, index+1);
+        if(open< n){
+            s[index]='(';
+            generateall(ans, s, index+1, open+1, close,n);            
+        }
+        if(close<open){
+            s[index] = ')';
+            generateall(ans, s, index+1, open, close+1,n);            
+        }
     }
 };
