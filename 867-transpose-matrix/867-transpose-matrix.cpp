@@ -10,5 +10,6 @@ public:
             }
         }
         return ans;
+        //if n*n matrix, i=0->n, j=i+1->n, swap(mat[i][j], swap[j][i]);
     }
 };
