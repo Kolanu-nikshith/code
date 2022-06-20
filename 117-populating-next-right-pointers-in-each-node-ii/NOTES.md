@@ -1,1 +1,1 @@
-Use bfs from right side and keep a prev pointer. at the start of each levels for loop make this prevptr as null
+​
