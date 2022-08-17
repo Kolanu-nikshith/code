@@ -5,7 +5,16 @@ public:
             return min(cost[0], cost[1]);
         }
         vector<int> dp(cost.size(), -1);
-        return min(solve(cost.size()-1, cost, dp), solve(cost.size()-2, cost, dp));
+        dp[0] = cost[0];
+        dp[1] = cost[1];
+        
+        for(int i=2;i<cost.size();i++){
+            dp[i] = cost[i] + min(dp[i-1],dp[i-2]);
+        }
+        int n=cost.size();
+        return min(dp[n-1], dp[n-2]);
+        
+        // return min(solve(cost.size()-1, cost, dp), solve(cost.size()-2, cost, dp));
     }
     
     int solve(int i, vector<int> &cost, vector<int> &dp){
